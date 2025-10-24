@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - HealthMed</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard">
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#" onclick="showSection('wishlist')">Wishlist</a></li>
+            <li><a href="#" onclick="showSection('cart')">Cart</a></li>
+            <li><a href="#" onclick="showSection('profile')">Profile</a></li>
+            <li><a href="#" onclick="showSection('recommendations')">Recommendations</a></li>
+            <li><a href="#" onclick="showSection('settings')">Settings</a></li>
+        </ul>
+    </nav>
+    <div class="main-content" id="mainContent">
+        <input type="text" class="search-bar" id="searchBar" placeholder="Search medicines..." oninput="filterProducts()">
+        <div id="productsContainer">
+            <!-- Dynamic products -->
+        </div>
+        <button class="proceed-btn" onclick="proceedToPayment()">Proceed to Payment</button>
+    </div>
+    <button class="chat-toggle" onclick="toggleChatbot()">💬</button>
+    <div id="chatbot" class="chatbot" style="display: none;">
+        <div class="chat-header">AI Assistant</div>
+        <div class="chat-messages" id="chatMessages">
+            <p>Welcome back! Need medicine suggestions?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Ask me anything...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.js"></script>
+    <script>
+        const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY || 'pk_test_default'); // Replace with real key
+        loadUserData();
+        loadProducts();
+        document.getElementById('sidebar').classList.add('open');
+    </script>
+</body>
+</html>
