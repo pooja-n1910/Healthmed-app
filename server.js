@@ -75,4 +75,4 @@ app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'public', 'log
 app.get('/dashboard', (req, res) => res.sendFile(path.join(__dirname, 'public', 'dashboard.html')));
 app.get('/payment', (req, res) => res.sendFile(path.join(__dirname, 'public', 'payment.html')));
 
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+app.listen(process.env.PORT || 5000, () => console.log(`🚀 Server running on port ${process.env.PORT || 5000}`));
